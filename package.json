@@ -7,7 +7,7 @@
     "node": "^16.11.1"
   },
   "scripts": {
-    "heroku-postbuild": "cd client/ && npm install && npm run build",
+    "build": "cd client/ && npm install && npm run build",
     "client:start": "cd client && npm start",
     "start": "cross-env NODE_ENV=production node src/index",
     "dev": "cross-env NODE_ENV=development nodemon src/index",
