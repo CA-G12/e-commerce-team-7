@@ -5,14 +5,13 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['airbnb-base', "some-other-config-you-use",
-  "prettier"],
-  overrides: [
-  ],
+  extends: ['airbnb-base', 'prettier'],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
   },
+  plugins: ['prettier'],
   rules: {
-    'linebreak-style': ['error', 'unix'],
+    'prettier/prettier': 'error',
   },
 };
