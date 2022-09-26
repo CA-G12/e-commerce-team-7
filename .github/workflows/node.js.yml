@@ -37,3 +37,4 @@ jobs:
         env:
           TEST_URL: postgres://postgres:123456@postgres:5432/test
           NODE_ENV: test
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
