@@ -8,7 +8,18 @@ beforeEach(() => build());
 afterAll(() => connection.end());
 
 describe('signup router', () => {
-  test('test signup query', () => {
-    expect(4).toBe(4);
+  test('test signup query', (done) => {
+    request(app)
+      .post('/api/v1/auth/singup')
+      .send({
+        username: 'nasssssssssss',
+        password: '123456',
+      })
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message.length).toBe(1);
+        return done();
+      });
   });
 });
