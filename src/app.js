@@ -5,6 +5,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 
 const router = require('./routes');
+const handleError = require('./error/handleError');
 
 const app = express();
 app.set('port', process.env.PORT || 8080);
@@ -14,5 +15,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(compression());
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
 app.use('/api/v1/', router);
+app.use(handleError);
 
 module.exports = app;
