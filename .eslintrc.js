@@ -12,6 +12,8 @@ module.exports = {
   },
   plugins: ['prettier'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': {
+      indent_size: 4,
+    },
   },
 };

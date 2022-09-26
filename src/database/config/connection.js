@@ -1,9 +1,7 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
-const {
-  NODE_ENV, DATABASE_URL, TEST_URL, DEV_URL,
-} = process.env;
+const { NODE_ENV, DATABASE_URL, TEST_URL, DEV_URL } = process.env;
 
 let connectionString = '';
 let ssl = false;
