@@ -15,5 +15,6 @@ module.exports = {
     'prettier/prettier': {
       indent_size: 4,
     },
+    'linebreak-style': ["error", "unix"]
   },
 };
