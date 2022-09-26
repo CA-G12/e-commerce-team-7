@@ -4,13 +4,13 @@ const app = require('../app');
 const build = require('../database/config/build');
 const connection = require('../database/config/connection');
 
-beforeEach(() => build());
+beforeAll(() => build());
 afterAll(() => connection.end());
 
 describe('signup router', () => {
   test('test signup query', (done) => {
     request(app)
-      .post('/api/v1/auth/singup')
+      .post('/api/v1/auth/signup')
       .send({
         username: 'nasssssssssss',
         password: '123456',

@@ -1,4 +1,4 @@
-const singUp = require('./signup');
+const signUp = require('./signup');
 
 
-module.exports = { singUp };
+module.exports = { signUp };

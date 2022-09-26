@@ -1,4 +1,4 @@
-const { singUp } = require('./auth');
+const { signUp } = require('./auth');
 const { getProducts } = require('./product');
 const {
   deleteCartItem,
@@ -14,5 +14,5 @@ module.exports = {
   addCartItem,
   updateCartItem,
   getProducts,
-  singUp,
+  signUp,
 };

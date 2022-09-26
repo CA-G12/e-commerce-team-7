@@ -5,8 +5,7 @@ const { signUpValidation } = require('../../utils/validation');
 const generateToken = require('../../utils/generateToken');
 const CustomizedError = require('../../error/customizedError');
 
-const singUp = (req, res, next) => {
-  console.log(req.body);
+const signUp = (req, res, next) => {
   signUpValidation(req.body)
     .then(() => getUsernameQuery(req.body.username))
     .then((username) => {
@@ -35,4 +34,4 @@ const singUp = (req, res, next) => {
     });
 };
 
-module.exports = singUp;
+module.exports = signUp;

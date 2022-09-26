@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { singUp } = require('../controllers');
+const { signUp } = require('../controllers');
 
-router.post('/singup', singUp);
+router.post('/signup', signUp);
 module.exports = router;
