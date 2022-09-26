@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "e-commerce app",
   "main": "index.js",
-  "engines" : { 
+  "engines": {
     "node": "^16.11.1"
   },
   "scripts": {
-    "build": "cd client/ && npm install && npm run build",
+    "init": "cd client && npm i && cd .. && npm i",
+    "heroku-postbuild": "cd client && npm run build",
     "client:start": "cd client && npm start",
     "start": "cross-env NODE_ENV=production node src/index",
     "dev": "cross-env NODE_ENV=development nodemon src/index",
