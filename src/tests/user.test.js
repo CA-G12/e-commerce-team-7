@@ -19,7 +19,7 @@ describe('signup router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body.message.length).toBe(1);
-        return done();
+        done();
       });
   });
 });
