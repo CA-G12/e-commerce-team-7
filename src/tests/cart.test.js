@@ -40,6 +40,7 @@ describe('  add item into Cart', () => {
     });
   });
 });
+
 describe('remove item from cart', () => {
   test('delete router ', (done) => {
     request(app)
@@ -61,6 +62,7 @@ describe('remove item from cart', () => {
     });
   });
 });
+
 describe('get all cart item ', () => {
   test('get items router ', (done) => {
     request(app)
@@ -75,9 +77,29 @@ describe('get all cart item ', () => {
         done();
       });
   });
-  test(' get cart ', () => {
+  test(' get items cart ', () => {
     getCart(1).then((data) => {
       expect(data.rows.length).toBeGreaterThan(0);
     });
   });
+});
+
+describe('update item in cart  ', () => {
+    test('update item router ', (done) => {
+      request(app)
+        .post('/api/v1/cart/quantity')
+        .set('Cookie', [
+          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJzYWlmIiwiaWF0IjoxNjY0MjE4NzQ2fQ.cjfUbvrfQoJ4r0mifiLbana-m8OQn8tV04MPjPuCF30',
+        ])
+        .send({
+          productId: 3,
+          quantity: 18,
+        })
+        .expect(200)
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res.body.length).toBe(1);
+          done();
+        });
+    });
 });
