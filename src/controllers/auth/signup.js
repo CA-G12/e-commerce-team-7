@@ -1,5 +1,4 @@
 const { hash } = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const { signUpQuery, getUsernameQuery } = require('../../database/queries');
 const { signUpValidation } = require('../../utils/validation');
 const generateToken = require('../../utils/generateToken');
