@@ -1,3 +1,4 @@
+const { singUp } = require('./auth');
 const { getProducts } = require('./product');
 const {
   deleteCartItem,
@@ -12,4 +13,6 @@ module.exports = {
   getCartItem,
   addCartItem,
   updateCartItem,
+  getProducts,
+  singUp,
 };
