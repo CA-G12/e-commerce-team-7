@@ -5,7 +5,7 @@ const deleteCartItem = (req, res) => {
   const clientId = req.user.id;
   deleteCart(clientId, productId)
     .then((data) => res.json({ done: data.rows[0].id }))
-    .catch((err) => res.json({ Error: err }));
+    .catch((err) => next(new CustomizedError()));
 };
 
 module.exports = deleteCartItem;
