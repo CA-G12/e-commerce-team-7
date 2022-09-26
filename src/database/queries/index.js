@@ -1,3 +1,9 @@
 const { getProductsQuery } = require('./products');
-
-module.exports = { getProductsQuery };
+const { addCart, getCart, deleteCart, updateQuantity } = require('./cart');
+module.exports = {
+  getProductsQuery,
+  addCart,
+  getCart,
+  deleteCart,
+  updateQuantity,
+};
