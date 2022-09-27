@@ -14,6 +14,11 @@ ARRAY[
 'https://dummyjson.com/image/i/products/1/1.jpg',
 'https://dummyjson.com/image/i/products/1/2.jpg']
 ),
+('IPHONE X', 'THIS IS IPHONE X ', 55.99, 10, 'SMART PHONES', 'https://dummyjson.com/image/i/products/1/thumbnail.jpg',
+ARRAY[
+'https://dummyjson.com/image/i/products/1/1.jpg',
+'https://dummyjson.com/image/i/products/1/2.jpg']
+),
 ('Samsung', 'THIS IS smasung', 150, 11, 'smart watch', 'https://dummyjson.com/image/i/products/1/thumbnail.jpg',
 ARRAY[
 'https://dummyjson.com/image/i/products/1/1.jpg',

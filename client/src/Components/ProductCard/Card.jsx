@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 function Card({ product }) {
-  const { name, price, image, description } = product;
+  const { name, price, image, description, category } = product;
   return (
-    <div className="product-card">
+    <div className="productCard-card">
       <img src={image} alt="product" />
       <div className="info">
-        <p className="product-category"> {name} </p>
+        <p className="productCard-category"> {category} </p>
+        <p className="description">{name}</p>
         <p className="description">{description}</p>
         <div className="buy-info">
           <span> ${price}</span>
