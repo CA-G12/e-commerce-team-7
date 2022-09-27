@@ -7,11 +7,11 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-          <Routes>
-              <Route path="/cart" element={<SingleProduct />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route end  path="/" element={<LandingCard />} />
-          </Routes>
+        <Routes>
+          <Route path="/cart" element={<SingleProduct />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route end path="/" element={<LandingCard />} />
+        </Routes>
       </Router>
     </div>
   );
