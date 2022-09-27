@@ -1,4 +1,4 @@
-const { signUp } = require('./auth');
+const { signUp, login, logout } = require('./auth');
 const { getProducts } = require('./product');
 const {
   deleteCartItem,
@@ -15,4 +15,6 @@ module.exports = {
   updateCartItem,
   getProducts,
   signUp,
+  login,
+  logout,
 };
