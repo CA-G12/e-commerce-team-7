@@ -1,0 +1,24 @@
+.product-page{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2rem;
+
+}
+.product-page .product-container .productCard-card{
+    margin: 2rem 0;
+}
+.product-page .product-container{
+    justify-content: center;
+    gap: 2rem;
+}
+.product-page .filters{
+    width: 90%;
+    margin: 3rem auto 0;
+    padding: 1rem;
+    background-color: rgb(241, 241, 241);
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    border-radius: 1rem;
+}
+.product-page .filters label{
+    display: block;
+}

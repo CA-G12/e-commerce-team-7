@@ -4,18 +4,63 @@ import './style.css';
 import Card from '../ProductCard/Card';
 
 function ProductsPage() {
-  const [Products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [price, setPrice] = useState({
+    min: 0,
+    max: 1000,
+  });
+  // const [categories, setCategories] = useState([]);
+  const categories = ['SMART PHONES', 'smart watch', 'laptops'];
   useEffect(() => {
     axios
       .get('/api/v1/product')
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   }, []);
+
   return (
-    <div className="product-container">
-      {Products.map((ele) => (
-        <Card product={ele} />
-      ))}
+    <div className="product-page">
+      <div className="product-container">
+        {products.map((ele) => (
+          <Card product={ele} key={ele.id} />
+        ))}
+      </div>
+      <div className="filters">
+        <div className="price">
+          <h3 className="price-title">Price</h3>
+          <label htmlFor="min-price">
+            Min Price
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              id="min-price"
+              value={price.min}
+              onChange={(e) => setPrice({ ...price, min: e.target.value })}
+            />
+          </label>
+          <label htmlFor="max-price">
+            Max Price
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              id="max-price"
+              value={price.max}
+              onChange={(e) => setPrice({ ...price, max: e.target.value })}
+            />
+          </label>
+        </div>
+        <div className="categories">
+          <h3 className="categories-title">Categories</h3>
+          {categories.map((ele) => (
+            <label htmlFor={ele} key={ele}>
+              {ele}
+              <input type="radio" id={ele} name="categories" />
+            </label>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
