@@ -5,7 +5,7 @@ const addCartItem = (req, res) => {
   const clientId = req.user.id;
 
   addCart(productId, clientId, quantity)
-    .then((data) => res.json(data))
+    .then((data) => res.json(data.rows))
     .catch((err) => next(new CustomizedError()));
 };
 

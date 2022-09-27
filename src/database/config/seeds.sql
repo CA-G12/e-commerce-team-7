@@ -31,7 +31,8 @@ INSERT INTO CARTS(PRODUCT_ID, CLIENT_ID, QUANTITY) VALUES
 (1, 1, 10),
 (2, 1, 10),
 (1, 2, 5),
-(3, 2, 10);
+(3, 2, 10),
+(3, 4, 10);
 
 
 
