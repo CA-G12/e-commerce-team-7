@@ -32,7 +32,6 @@ describe('signup router', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        console.log(res.body);
         expect(res.body).toBe('"username" is not allowed to be empty');
         done();
       });
@@ -47,7 +46,6 @@ describe('signup router', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        console.log(res.body);
         expect(res.body).toBe('"password" is not allowed to be empty');
         done();
       });
@@ -63,7 +61,6 @@ describe('signup router', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        console.log(res.body);
         expect(res.body).toBe('"avatar" is not allowed to be empty');
         done();
       });
@@ -126,7 +123,7 @@ describe('logout router', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body).toBe("logged out successfully");
+        expect(res.body).toBe('logged out successfully');
         done();
       });
   });

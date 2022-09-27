@@ -1,0 +1,102 @@
+body {
+  background: var(--main-color);
+  font-family: 'Rubik Distressed', cursive;
+}
+.header-landeng {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(241, 241, 241);
+  margin: 4rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.header-landeng h4 {
+  padding-top: 20px;
+  color: var(--button-background-color);
+}
+.title-product h1 {
+  font-size: 40px;
+  color: var(--accent-color);
+  margin-top: 20px;
+}
+.paragraph {
+  padding-top: 20px;
+}
+/* .img-product div {
+  width: 600px;
+  height: 600px;
+} */
+.img-product {
+  height: 500px;
+  width: 450px;
+  border-radius: 30%;
+  margin: 10px;
+}
+.title-product {
+  padding: 15px;
+}
+.buttons-div {
+  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+ }
+
+/* CSS */
+.button-one {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+  border-style: none;
+  box-sizing: border-box;
+  color: var(--main-color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Farfetch Basis', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+  min-height: 44px;
+  min-width: 10px;
+  outline: none;
+  overflow: hidden;
+  padding: 0px 20px 8px;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  margin-right: 50px;
+}
+.button-one span,
+.button-two span {
+  font-size: 30px;
+  padding: 0px;
+}
+/* .button-one:hover {
+  background-color: var(--main-color);
+  color: var(--accent-color);
+} */
+.button-two {
+  background-color: var(--main-color);
+  border-radius: 4px;
+  border-style: none;
+  box-sizing: border-box;
+  color: var(--accent-color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Farfetch Basis', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+  min-height: 44px;
+  min-width: 10px;
+  outline: none;
+  overflow: hidden;
+  padding: 0px 20px 8px;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+}
