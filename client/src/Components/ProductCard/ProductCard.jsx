@@ -12,9 +12,12 @@ function ProductCard() {
   if (products.length) {
     return (
       <div className="product-container">
-        {products.map((ele) => (
-          <Card product={ele} key={ele.id} />
-        ))}
+        <h2>Hot products</h2>
+        <div className="productCard-container">
+          {products.slice(0, 4).map((ele) => (
+            <Card product={ele} key={ele.id} />
+          ))}
+        </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#bfe1e5"
