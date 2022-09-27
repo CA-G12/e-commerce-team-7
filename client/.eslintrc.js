@@ -16,8 +16,8 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'prettier', 'jest'],
-  rules: {
-    'prettier/prettier': 'error',
-    'linebreak-style': 0,
-  },
+  // rules: {
+  //   'prettier/prettier': 'error',
+  //   'linebreak-style': 0,
+  // },
 };

@@ -13,9 +13,9 @@ module.exports = {
   },
   plugins: ['prettier', 'jest'],
   rules: {
-    'prettier/prettier': [
-      'error'
-    ],
-    'linebreak-style': ['error', 'unix'],
-  },
+  //   'prettier/prettier': [
+  //     'error'
+  //   ],
+  //   'linebreak-style': ['error', 'unix'],
+  // },
 };

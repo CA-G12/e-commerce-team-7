@@ -15,5 +15,29 @@
   --button-text-color: #39878f;
   --category-name-text: #adaeb5;
   --product-name-color: #717783;
+  --div-radius:10px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  width:2px;
+  border-radius:var(--button-radius); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  width:2px;
+  border-radius:var(--button-radius); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  width:2px;
+  border-radius:var(--button-radius); 
 }
