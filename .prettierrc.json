@@ -1,3 +1,8 @@
 {
-    "singleQuote": true
+    "singleQuote": true,
+    "editor.codeActionsOnSave": {
+         "source.fixAll": true
+     },
+     "editor.formatOnSave": false,
+     "files.eol": "\n"
 }

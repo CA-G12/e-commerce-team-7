@@ -1,5 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Header, LandingCard, ProductsPage, SingleProduct } from './Components';
+import {
+  Header,
+  LandingCard,
+  ProductsPage,
+  Signup,
+  SingleProduct,
+  Login,
+} from './Components';
 import './App.css';
 
 function App() {
@@ -11,6 +18,8 @@ function App() {
           <Route path="/cart" element={<SingleProduct />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route end path="/" element={<LandingCard />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
