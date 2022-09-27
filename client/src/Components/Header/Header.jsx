@@ -19,12 +19,13 @@ function Header() {
           </NavLink>
         </nav>
         <div className="auth-buttons">
-          <button type="button" className="btn-class">
-            <Link to="/signUp">Sign Up</Link>
-          </button>
-          <button type="button" className="btn-class">
+        <button type="button" className="sign-in-btn">
             <Link to="/signIn">Sign In</Link>
           </button>
+          <button type="button" className="sign-up-btn">
+            <Link to="/signUp">Sign Up</Link>
+          </button>
+
         </div>
       </div>
     </header>
