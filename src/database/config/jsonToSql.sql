@@ -1,15 +1,4 @@
-BEGIN;
-
-INSERT INTO CLIENT(USERNAME, PASSWORD)
- VALUES ('FADEZAK100', '$2a$12$JfAC2rit./pFO4uOkwZAGOFjH8OVQozOyG9ecNT9yoBk8VpvtzQoS'),
-  ('saif', '$2a$12$JfAC2rit./pFO4uOkwZAGOFjH8OVQozOyG9ecNT9yoBk8VpvtzQoS'),
-  ('salsabeel', '$2a$12$JfAC2rit./pFO4uOkwZAGOFjH8OVQozOyG9ecNT9yoBk8VpvtzQoS'),
-  ('nader', '$2a$12$JfAC2rit./pFO4uOkwZAGOFjH8OVQozOyG9ecNT9yoBk8VpvtzQoS');
-
-
-
-INSERT INTO PRODUCTS(NAME, DESCRIPTION, PRICE, STOCK, CATEGORY, IMAGE, GALARY)
- VALUES ('iPhone 9', 'An apple mobile which is nothing like apple', 549, '94', 'smartphones', 'https://dummyjson.com/image/i/products/1/thumbnail.jpg', Array['https://dummyjson.com/image/i/products/1/1.jpg', 'https://dummyjson.com/image/i/products/1/2.jpg',  'https://dummyjson.com/image/i/products/1/3.jpg']),
+INSERT INTO PRODUCTS(NAME, DESCRIPTION, PRICE, STOCK, CATEGORY, IMAGE, GALARY) VALUES ('iPhone 9', 'An apple mobile which is nothing like apple', 549, '94', 'smartphones', 'https://dummyjson.com/image/i/products/1/thumbnail.jpg', Array['https://dummyjson.com/image/i/products/1/1.jpg', 'https://dummyjson.com/image/i/products/1/2.jpg',  'https://dummyjson.com/image/i/products/1/3.jpg']),
      ('iPhone X', 'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...', 899, '34', 'smartphones', 'https://dummyjson.com/image/i/products/2/thumbnail.jpg', Array['https://dummyjson.com/image/i/products/2/1.jpg', 'https://dummyjson.com/image/i/products/2/2.jpg',  'https://dummyjson.com/image/i/products/2/3.jpg']),
      ('Samsung Universe 9', 'Samsungs new variant which goes beyond Galaxy to the Universe', 1249, '36', 'smartphones', 'https://dummyjson.com/image/i/products/3/thumbnail.jpg', Array['https://dummyjson.com/image/i/products/3/1.jpg', 'undefined',  'undefined']),
      ('OPPOF19', 'OPPO F19 is officially announced on April 2021.', 280, '123', 'smartphones', 'https://dummyjson.com/image/i/products/4/thumbnail.jpg', Array['https://dummyjson.com/image/i/products/4/1.jpg', 'https://dummyjson.com/image/i/products/4/2.jpg',  'https://dummyjson.com/image/i/products/4/3.jpg']),
@@ -39,20 +28,3 @@ INSERT INTO PRODUCTS(NAME, DESCRIPTION, PRICE, STOCK, CATEGORY, IMAGE, GALARY)
      ('3D Embellishment Art Lamp', '3D led lamp sticker Wall sticker 3d wall art light on/off button cell operated (included)', 20, '54', 'home-decoration', 'https://dummyjson.com/image/i/products/28/thumbnail.jpg', Array['https://dummyjson.com/image/i/products/28/1.jpg', 'https://dummyjson.com/image/i/products/28/2.jpg',  'https://dummyjson.com/image/i/products/28/3.png']),
      ('Handcraft Chinese style', 'Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate', 60, '7', 'home-decoration', 'https://dummyjson.com/image/i/products/29/thumbnail.webp', Array['https://dummyjson.com/image/i/products/29/1.jpg', 'https://dummyjson.com/image/i/products/29/2.jpg',  'https://dummyjson.com/image/i/products/29/3.webp']),
      ('Key Holder', 'Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality', 30, '54', 'home-decoration', 'https://dummyjson.com/image/i/products/30/thumbnail.jpg', Array['https://dummyjson.com/image/i/products/30/1.jpg', 'https://dummyjson.com/image/i/products/30/2.jpg',  'https://dummyjson.com/image/i/products/30/3.jpg']);
-
-
-
-INSERT INTO CARTS(PRODUCT_ID, CLIENT_ID, QUANTITY) VALUES
-(1, 1, 10),
-(2, 1, 10),
-(1, 2, 5),
-(3, 2, 10),
-(3, 4, 10);
-
-
-
-
-
-
-
-COMMIT;
