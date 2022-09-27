@@ -1,4 +1,69 @@
-h1 {
-    color: var(--product-name-color);
+header{
+    background-color: rgb(241, 241, 241);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+a{
+    text-decoration: none;
+    color: var(--accent-color);
+}
+.navbar{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+.navbar nav{
+    display: flex;
+}
+.navbar .header-title{
+    font-size: 1.5rem;
+}
+.navbar nav a{
+    text-decoration: none;
+    padding: 0.5rem;
+    font-weight: 600;
+}
+.navbar nav a.active{
+    border-bottom: 3px solid black;
+}
+.auth-buttons{
+    display: flex;
+    gap: 1rem;
+}
+.btn-class {
+    width: 8rem;
+    padding: 0.8rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    background-color: black;
+}
+.auth-buttons button:first-child a{
+    color: var(--main-color);
+}
+.auth-buttons button:last-child{
+    background-color: var(--button-background-color);
+    border: none;
+}
+.auth-buttons button:last-child a{
+    color: var(--button-text-color);
+    color: var(--accent-color);
+}
 
+@media (max-width: 850px) {
+    .navbar{
+        
+    }
+    .navbar nav{
+        order: 2;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.1rem;
+    }
 }
