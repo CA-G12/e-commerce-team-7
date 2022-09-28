@@ -20,6 +20,12 @@ function ProductsPage() {
 
   return (
     <div className="product-page">
+      <div className="pagination">
+        <button type="button">1</button>
+        <button type="button">2</button>
+        <button type="button">3</button>
+        <button type="button">4</button>
+      </div>
       <div className="product-container">
         {products.map((ele) => (
           <Card product={ele} key={ele.id} />
@@ -31,6 +37,9 @@ function ProductsPage() {
           <label htmlFor="min-price">
             Min Price
             <input
+              // onMouseUp={(e) => {
+
+              // }}
               type="range"
               min="0"
               max="1000"
@@ -47,7 +56,15 @@ function ProductsPage() {
               max="1000"
               id="max-price"
               value={price.max}
-              onChange={(e) => setPrice({ ...price, max: e.target.value })}
+              onChange={(e) => {
+                setPrice((prev) => {
+                  // eslint-disable-next-line eqeqeq
+                  if (prev.max != e.target.value) {
+                    return { ...prev, max: e.target.value };
+                  }
+                  return prev;
+                });
+              }}
             />
           </label>
         </div>
