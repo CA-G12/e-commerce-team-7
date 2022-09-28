@@ -7,15 +7,14 @@ export default function ProductCart({ setTotal, total, info }) {
   const [deleteFlag, setFlag] = React.useState(false);
   useEffect(() => {
     if (deleteFlag) {
-      console.log('here');
       axios
         .delete('/api/v1/cart', info.id, {
           headers: {
             'Content-Type': 'application/json',
           },
         })
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
+        .then((res) => res.data)
+        .catch((err) => err);
     }
   }, []);
 
