@@ -2,9 +2,9 @@ const { deleteCart } = require('../../database/queries');
 const CustomizedError = require('../../error/customizedError');
 
 const deleteCartItem = (req, res, next) => {
-  const { productId } = req.body;
+  const { id } = req.query;
   const clientId = req.user.id;
-  deleteCart(clientId, productId)
+  deleteCart(clientId, id)
     .then((data) => res.json(data.rows))
     .catch(() => next(new CustomizedError()));
 };

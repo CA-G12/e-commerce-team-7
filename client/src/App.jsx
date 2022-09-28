@@ -4,7 +4,6 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-import fetchCartItem from './Components/Cart/fetch';
 
 import {
   Header,
@@ -17,16 +16,18 @@ import {
 } from './Components';
 
 function App() {
-  const [cart, setCart] = useState([
-    {
-      data: 'Nodata',
-    },
-  ]);
+  const [cart, setCart] = useState([]);
+
   const [isLogged, setLogged] = useState(false);
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    fetchCartItem().then((data) => setCart(data));
+    axios
+      .get('/api/v1/cart')
+      .then((res) => {
+        setCart(res.data);
+      })
+      .catch((err) => err);
   }, []);
 
   useEffect(() => {
