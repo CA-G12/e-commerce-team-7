@@ -1,40 +1,61 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import './style.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 
 function SingleProduct() {
+  const [product, setProduct] = useState(null);
+
+  const { id } = useParams();
+  useEffect(() => {
+    axios.get(`/api/v1/product/id?id=${id}`).then(({ data }) => {
+      setProduct(data);
+    });
+  }, []);
+
   return (
-    <div className="product-container">
-      <div className="product-info-div">
-        <p className="product-category">Products Category</p>
-        <h1 className="product-title">Products Name</h1>
-        <p className="product-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel
-          felis neque. Nullam sed fringilla leo. Nullam et nisl ligula. Sed
-          consectetur arcu quis neque ornare, id sagittis diam mattis. Maecenas
-          sit amet mollis nibh. Curabitur eget sem nulla. Cras gravida posuere
-          ipsum nec lacinia. Donec convallis eleifend aliquet. Integer id
-          laoreet diam. Ut sollicitudin erat nec ex cursus, quis molestie eros
-          dapibus. Donec quis iaculis nibh, eu condimentum ipsum. Donec sit amet
-          eros et elit suscipit laoreet. Maecenas id dolor eu eros fringilla
-          faucibus eget pharetra magna. Praesent dictum fringilla diam ut
-          viverra. In maximus tellus a pretium lobortis.
-        </p>
-        <div className="btn-div">
-          <a className="btn-class buy-btn" href="/">
-            Buy
-          </a>
-          <a href="/" className="btn-class cart-btn">
-            Add to cart!
-          </a>
+    <>
+      <div className="product-container">
+        <div className="product-info-div">
+          {product && <p className="product-category">{product[0].category}</p>}
+          {product && <h1 className="product-title">{product[0].name}</h1>}
+          {product && (
+            <p className="product-description"> {product[0].description}</p>
+          )}
+          <div className="btn-div">
+            <a className="btn-class buy-btn" href="/">
+              Buy
+            </a>
+            <a href="/" className="btn-class cart-btn">
+              Add to cart!
+            </a>
+          </div>
+        </div>
+        <div className="product-img-div">
+          {product && (
+            <img className="img" src={product[0].image} alt="iphone x" cursor />
+          )}
         </div>
       </div>
-      <div className="product-img-div">
-        <img
-          className="img"
-          src="https://www.pngmart.com/files/7/IPhone-PNG-Background-Image.png"
-          alt="iphone x"
-        />
+      <div className="gallery">
+        <h3 className="gallery-title">Gallery: </h3>
+        <Carousel className="carousell">
+          {product &&
+            product[0].galary
+              .filter((filterElement) => {
+                if (filterElement.length > 10) return filterElement;
+                return false;
+              })
+              .map((item) => (
+                <div key={`${item + id}`}>
+                  <img alt="product" src={item} />
+                </div>
+              ))}
+        </Carousel>
       </div>
-    </div>
+    </>
   );
 }
 

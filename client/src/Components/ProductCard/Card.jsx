@@ -1,18 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
 
 function Card({ product }) {
-  const { name, price, image, description, category } = product;
+  const navigate = useNavigate();
+  const { id, name, price, image, category } = product;
   return (
     <div className="productCard-card">
       <img src={image} alt="product" />
       <div className="info">
         <p className="productCard-category"> {category} </p>
         <p className="description">{name}</p>
-        <p className="description">{description}</p>
         <div className="buy-info">
           <span> ${price}</span>
           <button type="button"> Add </button>
+          <button onClick={() => navigate(`/product/${id}`)} type="button">
+            View
+          </button>
         </div>
       </div>
     </div>

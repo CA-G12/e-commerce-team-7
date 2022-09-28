@@ -10,6 +10,7 @@ import {
   Cart,
   Signup,
   Login,
+  SingleProduct,
 } from './Components';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,8 +38,16 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route end path="/" element={<LandingCard />} />
-          <Route path="/signup" element={<Signup setLogged={setLogged} />} />
-          <Route path="/login" element={<Login setLogged={setLogged} />} />
+          <Route
+            path="/signup"
+            element={<Signup setLogged={setLogged} setUsername={setUsername} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setLogged={setLogged} setUsername={setUsername} />}
+          />
+          <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="*" element={<h1>Error</h1>} />
         </Routes>
       </Router>
       <ToastContainer
