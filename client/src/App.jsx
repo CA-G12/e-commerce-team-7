@@ -1,15 +1,33 @@
-//import React from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Header, LandingCard, ProductsPage, Cart, Signup, Login} from './Components';
+
+import axios from 'axios';
+import {
+  Header,
+  LandingCard,
+  ProductsPage,
+  Cart,
+  Signup,
+  Login,
+} from './Components';
 
 import './App.css';
 
 function App() {
-  // const [cart ,SetCart]= React.useState([]);
+  const [isLogged, setLogged] = useState(false);
+
+  useEffect(() => {
+    axios('/api/v1/auth/verify').then((res) => {
+      if (res.status === 200) {
+        setLogged(true);
+      }
+    });
+  }, []);
+
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Header isLogged={isLogged} setLogged={setLogged} />
         <Routes>
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<ProductsPage />} />

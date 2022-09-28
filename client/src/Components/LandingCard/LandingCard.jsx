@@ -1,4 +1,5 @@
 import './style.css';
+
 import product from './img/product.png';
 import ProductCard from '../ProductCard/ProductCard';
 

@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const verifyAccessToken = (req, res, next) => {
   const { token } = req.cookies;
+
   try {
     if (!token) throw new CustomizedError(401, 'Unauthorized');
 
