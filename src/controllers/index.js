@@ -1,10 +1,11 @@
-const { signUp, login, logout } = require('./auth');
+const { signUp, login, logout, verify } = require('./auth');
 const {
   getProducts,
   getAllCategories,
   filterByCategory,
   filterByPrice,
   getCount,
+  getAllProducts,
 } = require('./product');
 const {
   deleteCartItem,
@@ -26,4 +27,6 @@ module.exports = {
   login,
   logout,
   getCount,
+  getAllProducts,
+  verify,
 };

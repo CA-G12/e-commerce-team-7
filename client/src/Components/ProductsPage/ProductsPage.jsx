@@ -10,27 +10,51 @@ function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [price, setPrice] = useState({
     min: 0,
-    max: 1000,
+    max: 5000,
   });
   const [productsCount, setProductsCount] = useState(0);
-  // const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [offset, setOffset] = useState(0);
-  const categories = ['SMART PHONES', 'smart watch', 'laptops'];
+  const [currentCategory, setCurrentCategory] = useState('all');
   useEffect(() => {
     axios
-      .get(`/api/v1/product/all/count`)
-      .then((res) => {
-        setProductsCount(res.data[0].count);
-      })
+      .get('/api/v1/product/categories')
+      .then(({ data }) => setCategories([{ category: 'all' }, ...data]))
       .catch(() => toast.error('Internal server error'));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`/api/v1/product/${offset}`)
-      .then((res) => setProducts(res.data))
+      .get(
+        `api/v1/product/filterAll?min=${price.min}&max=${price.max}&category=${currentCategory}&offset=${offset}`
+      )
+      .then(({ data }) => {
+        setProducts(data);
+      })
       .catch(() => toast.error('Internal server error'));
   }, [offset]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `api/v1/product/filterAll?min=${price.min}&max=${price.max}&category=${currentCategory}&offset=0`
+      )
+      .then(({ data }) => {
+        setProducts(data);
+      })
+      .catch(() => toast.error('Internal server error'));
+
+    axios
+      .get(
+        `/api/v1/product/all/count?min=${price.min}&max=${price.max}&category=${currentCategory}`
+      )
+      .then((res) => {
+        setProductsCount(res.data[0].count);
+      })
+      .catch(() => {
+        toast.error('Internal server error');
+      });
+  }, [price, currentCategory]);
 
   const getBtnPaginationNumbers = () => {
     const btnCount = productsCount / numberOfShownCounts;
@@ -68,12 +92,9 @@ function ProductsPage() {
           <label htmlFor="min-price">
             Min Price
             <input
-              // onMouseUp={(e) => {
-
-              // }}
               type="range"
               min="0"
-              max="1000"
+              max="5000"
               id="min-price"
               value={price.min}
               onChange={(e) => setPrice({ ...price, min: e.target.value })}
@@ -84,7 +105,7 @@ function ProductsPage() {
             <input
               type="range"
               min="0"
-              max="1000"
+              max="5000"
               id="max-price"
               value={price.max}
               onChange={(e) => {
@@ -102,9 +123,16 @@ function ProductsPage() {
         <div className="categories">
           <h3 className="categories-title">Categories</h3>
           {categories.map((ele) => (
-            <label htmlFor={ele} key={ele}>
-              {ele}
-              <input type="radio" id={ele} name="categories" />
+            <label htmlFor={ele.category} key={ele.category}>
+              {ele.category}
+              <input
+                type="radio"
+                id={ele.category}
+                value={ele.category}
+                name="categories"
+                checked={currentCategory === ele.category}
+                onChange={(e) => setCurrentCategory(e.target.value)}
+              />
             </label>
           ))}
         </div>

@@ -16,7 +16,7 @@ import './App.css';
 function App() {
   const [cart, setCart] = useState([
     {
-      data: 'No data',
+      data: 'Nodata',
     },
   ]);
   useEffect(() => {
@@ -37,5 +37,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

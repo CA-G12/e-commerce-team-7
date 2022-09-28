@@ -2,7 +2,7 @@ const { getCountQuery } = require('../../database/queries');
 const CustomizedError = require('../../error/customizedError');
 
 const getCount = (req, res, next) => {
-  getCountQuery()
+  getCountQuery(req.query)
     .then((data) => {
       res.json(data.rows);
     })

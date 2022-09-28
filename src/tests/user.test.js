@@ -118,7 +118,7 @@ describe('login router', () => {
 describe('logout router', () => {
   test('test logout query', (done) => {
     request(app)
-      .post('/api/v1/auth/logout')
+      .get('/api/v1/auth/logout')
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
