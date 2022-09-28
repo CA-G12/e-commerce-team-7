@@ -1,8 +1,9 @@
 const { getAllCategory } = require('../../database/queries');
 const CustomizedError = require('../../error/customizedError');
-const getAllCategories = (req, res) => {
+
+const getAllCategories = (req, res, next) => {
   getAllCategory()
     .then((data) => res.json(data.rows))
-    .catch((err) => next(new CustomizedError()));
+    .catch(() => next(new CustomizedError()));
 };
 module.exports = getAllCategories;

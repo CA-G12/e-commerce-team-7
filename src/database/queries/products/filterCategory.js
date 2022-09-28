@@ -1,4 +1,5 @@
 const connection = require('../../config/connection');
+
 const filterCategory = (category) => {
   const sql = {
     text: 'SELECT * FROM PRODUCTS WHERE category = $1',

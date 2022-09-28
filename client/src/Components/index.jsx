@@ -5,4 +5,4 @@ import ProductCard from './ProductCard/ProductCard';
 import ProductsPage from './ProductsPage/ProductsPage';
 import Cart from './Cart/Cart';
 
-export { Header, SingleProduct, LandingCard, ProductCard, ProductsPage,Cart };
+export { Header, SingleProduct, LandingCard, ProductCard, ProductsPage, Cart };

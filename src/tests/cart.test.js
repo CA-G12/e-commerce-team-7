@@ -2,17 +2,10 @@ require('dotenv').config();
 const request = require('supertest');
 
 const { addCart, getCart, deleteCart } = require('../database/queries');
-const {
-  deleteCartItem,
-  getCartItem,
-  addCartItem,
-  updateCartItem,
-} = require('../controllers/cart');
 
 const app = require('../app');
 const build = require('../database/config/build');
 const connection = require('../database/config/connection');
-const supertest = require('supertest');
 
 beforeEach(() => build());
 afterAll(() => connection.end());
