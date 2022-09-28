@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.css';
+import { ToastContainer, toast } from 'react-toastify';
 import Card from '../ProductCard/Card';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProductsPage() {
   const numberOfShownCounts = 10;
@@ -20,14 +22,14 @@ function ProductsPage() {
       .then((res) => {
         setProductsCount(res.data[0].count);
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error('Internal server error'));
   }, []);
 
   useEffect(() => {
     axios
       .get(`/api/v1/product/${offset}`)
       .then((res) => setProducts(res.data))
-      .catch((err) => console.log(err));
+      .catch(() => toast.error('Internal server error'));
   }, [offset]);
 
   const getBtnPaginationNumbers = () => {
@@ -107,6 +109,7 @@ function ProductsPage() {
           ))}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

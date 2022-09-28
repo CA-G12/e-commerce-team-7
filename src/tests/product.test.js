@@ -23,7 +23,7 @@ describe('', () => {
 
   test('test that products endpoint returns data', (done) => {
     request(app)
-      .get('/api/v1/product/')
+      .get('/api/v1/product/10')
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);

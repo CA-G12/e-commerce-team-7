@@ -19,7 +19,7 @@ describe('signup router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body.message.length).toBe(1);
-        done();
+        return done();
       });
   });
   test('username empty', (done) => {
@@ -33,7 +33,7 @@ describe('signup router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body).toBe('"username" is not allowed to be empty');
-        done();
+        return done();
       });
   });
   test('password empty', (done) => {
@@ -47,7 +47,7 @@ describe('signup router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body).toBe('"password" is not allowed to be empty');
-        done();
+        return done();
       });
   });
   test('test', (done) => {
@@ -62,7 +62,7 @@ describe('signup router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body).toBe('"avatar" is not allowed to be empty');
-        done();
+        return done();
       });
   });
 });
@@ -80,7 +80,7 @@ describe('login router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body.username).toBe('nasssssssssss');
-        done();
+        return done();
       });
   });
   test('test login query user not found', (done) => {
@@ -95,7 +95,7 @@ describe('login router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body).toBe('Username not found');
-        done();
+        return done();
       });
   });
   test('test login query wrong password', (done) => {
@@ -110,7 +110,7 @@ describe('login router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body).toBe('wrong password');
-        done();
+        return done();
       });
   });
 });
@@ -124,7 +124,7 @@ describe('logout router', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body).toBe('logged out successfully');
-        done();
+        return done();
       });
   });
 });

@@ -1,8 +1,8 @@
+import axios from 'axios';
+
 export default function fetchingProduct() {
-  return fetch('/api/v1/product', {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log(err));
+  return axios
+    .get('/api/v1/product')
+    .then((res) => res.data)
+    .catch((err) => err);
 }
