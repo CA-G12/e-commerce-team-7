@@ -3,6 +3,7 @@ const getAllCategory = require('./getCategory');
 const filterCategory = require('./filterCategory');
 const filterPrice = require('./filterPrice');
 const getCountQuery = require('./getCount');
+const getFilteredProductsQuery = require('./getFilteredProducts');
 
 module.exports = {
   getProductsQuery,
@@ -10,4 +11,5 @@ module.exports = {
   filterCategory,
   filterPrice,
   getCountQuery,
+  getFilteredProductsQuery,
 };
