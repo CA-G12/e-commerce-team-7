@@ -5,13 +5,17 @@ const {
   getAllCategories,
   filterByCategory,
   filterByPrice,
+  getCount,
 } = require('../controllers');
 
-router.get('/', getProducts);
+router.get('/:offset', getProducts);
+
+router.get('/all/count', getCount);
 
 router.get('/categories', getAllCategories);
 
 router.post('/filterCategory', filterByCategory);
 
 router.post('/filterPrice', filterByPrice);
+
 module.exports = router;

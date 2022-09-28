@@ -1,10 +1,11 @@
 const joi = require('joi');
+
 const signUpValidation = (data) => {
   const schema = joi.object({
     username: joi.string().required(),
     password: joi
       .string()
-      .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+      .pattern(/^[a-zA-Z0-9]{3,30}$/)
       .required(),
     avatar: joi
       .string()

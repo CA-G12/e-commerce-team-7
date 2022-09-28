@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ProductCart({ setTotal, total }) {
-    const [nmbProduct, setNmbProduct ] = React.useState(1);
-    
+  const [nmbProduct, setNmbProduct] = React.useState(1);
+
   return (
     <div className="Cart-Items">
       <div className="image-box">
@@ -17,29 +17,36 @@ export default function ProductCart({ setTotal, total }) {
         <h3 className="subtitle">$41</h3>
       </div>
       <div className="counter">
-        <button type="button" className="btn" onClick={()=>{
-            setNmbProduct((prev)=>prev+1);
+        <button
+          type="button"
+          className="btn"
+          onClick={() => {
+            setNmbProduct((prev) => prev + 1);
             const price = total + 4;
             setTotal(price);
-        }} >
+          }}
+        >
           +
         </button>
         <div className="count">{nmbProduct}</div>
-        <button type="button" className="btn" onClick={()=>{
-            if(nmbProduct > 1){
-            setNmbProduct(nmbProduct  - 1)
-            const price = total - 4;
-            setTotal(price);
+        <button
+          type="button"
+          className="btn"
+          onClick={() => {
+            if (nmbProduct > 1) {
+              setNmbProduct(nmbProduct - 1);
+              const price = total - 4;
+              setTotal(price);
             }
-            
-        }}>
+          }}
+        >
           -
         </button>
       </div>
     </div>
   );
 }
-ProductCart.propTypes={
-    setTotal: PropTypes.func.isRequired,
-    total: PropTypes.number.isRequired
-}
+ProductCart.propTypes = {
+  setTotal: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired,
+};

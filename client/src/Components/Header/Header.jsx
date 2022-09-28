@@ -29,10 +29,10 @@ function Header() {
         </nav>
         <div className="auth-buttons">
           <button type="button" className="sign-in-btn">
-            <Link to="/signIn">Sign In</Link>
+            <Link to="/login">Log In</Link>
           </button>
           <button type="button" className="sign-up-btn">
-            <Link to="/signUp">Sign Up</Link>
+            <Link to="/signup">Sign Up</Link>
           </button>
         </div>
       </div>

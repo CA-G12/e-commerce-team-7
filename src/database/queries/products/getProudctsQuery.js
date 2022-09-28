@@ -1,5 +1,6 @@
 const connection = require('../../config/connection');
 
-const getProductsQuery = () => connection.query('SELECT * FROM PRODUCTS');
+const getProductsQuery = (offset) =>
+  connection.query('SELECT * FROM PRODUCTS LIMIT 10 OFFSET $1', [offset]);
 
 module.exports = getProductsQuery;
