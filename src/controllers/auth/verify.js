@@ -1,5 +1,5 @@
-const verify = (req, res, next) => {
-    res.status(200).json('verified')
-}
+const verify = (req, res) => {
+  res.status(200).json(req.user);
+};
 
 module.exports = verify;

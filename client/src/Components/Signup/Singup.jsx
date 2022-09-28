@@ -4,8 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PropTypes from 'prop-types';
 
-export default function Singup() {
+export default function Signup({ setLogged }) {
   const navigate = useNavigate();
 
   const [userData, setUserdata] = React.useState({
@@ -21,8 +22,7 @@ export default function Singup() {
     const { username, password, avatar } = userData;
     const avatarRegex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/i;
     const passwordRegex = /^[a-zA-Z0-9]{3,30}$/;
-    const usernameRegex =
-      /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+    const usernameRegex = /^[a-zA-Z0-9]{3,30}$/;
     if (!usernameRegex.test(username)) {
       toast.error('invalid username');
       return false;
@@ -40,8 +40,7 @@ export default function Singup() {
   };
 
   const handleSubmit = () => {
-    try {
-      validateUserData();
+    if (validateUserData()) {
       axios
         .post('/api/v1/auth/signup', userData, {
           headers: {
@@ -50,12 +49,11 @@ export default function Singup() {
         })
         .then((res) => {
           if (res.status === 200) {
+            setLogged(true);
             navigate('/');
           }
         })
         .catch(() => toast.error('Internal Server Error'));
-    } catch (err) {
-      toast.error(err);
     }
   };
 
@@ -143,3 +141,7 @@ export default function Singup() {
     </div>
   );
 }
+
+Signup.propTypes = {
+  setLogged: PropTypes.func.isRequired,
+};
