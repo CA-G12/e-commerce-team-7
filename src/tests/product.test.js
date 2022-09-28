@@ -1,7 +1,12 @@
 require('dotenv').config();
 const request = require('supertest');
 
-const { getProductsQuery,getAllCategory,filterCategory,filterPrice} = require('../database/queries');
+const {
+  getProductsQuery,
+  getAllCategory,
+  filterCategory,
+  filterPrice,
+} = require('../database/queries');
 const app = require('../app');
 const build = require('../database/config/build');
 const connection = require('../database/config/connection');
@@ -28,8 +33,7 @@ describe('', () => {
       });
   });
 });
-describe(' get all category ',()=>{
-  
+describe(' get all category ', () => {
   test('test get all category query', () => {
     getAllCategory().then((data) => {
       expect(data.rows.length).toBeGreaterThan(1);
@@ -45,20 +49,20 @@ describe(' get all category ',()=>{
         return done();
       });
   });
-})
+});
 
-describe('filter By category ',()=>{
+describe('filter By category ', () => {
   test('test filter category query', () => {
     filterCategory('smartphones').then((data) => {
       expect(data.rows.length).toBeGreaterThan(1);
     });
   });
-  
+
   test('test filter category endpoint returns data', (done) => {
     request(app)
       .post('/api/v1/product/filterCategory/')
       .send({
-        category : 'smartphones'
+        category: 'smartphones',
       })
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -67,8 +71,7 @@ describe('filter By category ',()=>{
         return done();
       });
   });
-
-})  
+});
 
 test('test filter price query', () => {
   filterPrice().then((data) => {
@@ -79,7 +82,7 @@ test('test filter price endpoint returns data', (done) => {
   request(app)
     .post('/api/v1/product/filterPrice/')
     .send({
-      order: 'desc'
+      order: 'desc',
     })
     .expect('Content-Type', /json/)
     .end((err, res) => {

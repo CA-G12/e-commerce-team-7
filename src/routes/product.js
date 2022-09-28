@@ -6,6 +6,7 @@ const {
   filterByCategory,
   filterByPrice,
 } = require('../controllers');
+
 router.get('/', getProducts);
 
 router.get('/categories', getAllCategories);
