@@ -4,27 +4,56 @@ import './style.css';
 import Card from '../ProductCard/Card';
 
 function ProductsPage() {
+  const numberOfShownCounts = 10;
   const [products, setProducts] = useState([]);
   const [price, setPrice] = useState({
     min: 0,
     max: 1000,
   });
+  const [productsCount, setProductsCount] = useState(0);
   // const [categories, setCategories] = useState([]);
+  const [offset, setOffset] = useState(0);
   const categories = ['SMART PHONES', 'smart watch', 'laptops'];
   useEffect(() => {
     axios
-      .get('/api/v1/product')
-      .then((res) => setProducts(res.data))
+      .get(`/api/v1/product/all/count`)
+      .then((res) => {
+        setProductsCount(res.data[0].count);
+      })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`/api/v1/product/${offset}`)
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.log(err));
+  }, [offset]);
+
+  const getBtnPaginationNumbers = () => {
+    const btnCount = productsCount / numberOfShownCounts;
+    const numbersArr = [];
+    for (let i = 0; i < btnCount; i += 1) {
+      numbersArr.push(i + 1);
+    }
+    return numbersArr;
+  };
 
   return (
     <div className="product-page">
       <div className="pagination">
-        <button type="button">1</button>
-        <button type="button">2</button>
-        <button type="button">3</button>
-        <button type="button">4</button>
+        {getBtnPaginationNumbers().map((btn) => (
+          <button
+            type="button"
+            key={btn}
+            value={btn}
+            onClick={(e) => {
+              setOffset((e.target.value - 1) * numberOfShownCounts);
+            }}
+          >
+            {btn}
+          </button>
+        ))}
       </div>
       <div className="product-container">
         {products.map((ele) => (

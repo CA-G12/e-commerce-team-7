@@ -22,3 +22,17 @@
 .product-page .filters label{
     display: block;
 }
+/* pagination */
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 1.5rem 0rem;
+}
+.pagination button{
+padding: 5px 15px;
+background-color: var(--accent-color);
+color: var(--main-color);
+cursor: pointer;
+}
