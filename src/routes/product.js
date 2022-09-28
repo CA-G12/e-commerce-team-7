@@ -6,13 +6,12 @@ const {
   filterByCategory,
   filterByPrice,
   getCount,
-  getAllProducts
+  getAllProducts,
 } = require('../controllers');
-
 
 router.get('/all/count', getCount);
 
-router.get('/filterAll', getAllProducts)
+router.get('/filterAll', getAllProducts);
 router.get('/categories', getAllCategories);
 
 router.post('/filterCategory', filterByCategory);

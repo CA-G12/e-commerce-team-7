@@ -5,7 +5,7 @@ const {
   filterByCategory,
   filterByPrice,
   getCount,
-  getAllProducts
+  getAllProducts,
 } = require('./product');
 const {
   deleteCartItem,
@@ -27,5 +27,5 @@ module.exports = {
   login,
   logout,
   getCount,
-  getAllProducts
+  getAllProducts,
 };

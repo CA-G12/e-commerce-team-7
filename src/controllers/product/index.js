@@ -11,5 +11,5 @@ module.exports = {
   filterByCategory,
   filterByPrice,
   getCount,
-  getAllProducts
+  getAllProducts,
 };
