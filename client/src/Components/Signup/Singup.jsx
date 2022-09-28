@@ -1,22 +1,108 @@
 import './style.css';
+import React from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Singup() {
+  const navigate = useNavigate();
+
+  const [userData, setUserdata] = React.useState({
+    username: '',
+    password: '',
+    avatar: '',
+  });
+  const [confirmPassword, setConfirmPassword] = React.useState({
+    confirmPassword: '',
+  });
+
+  const validateUserData = () => {
+    const { username, password, avatar } = userData;
+    const avatarRegex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/i;
+    const passwordRegex = /^[a-zA-Z0-9]{3,30}$/;
+    const usernameRegex =
+      /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+    if (!usernameRegex.test(username)) {
+      toast.error('invalid username');
+      return false;
+    }
+    if (!passwordRegex.test(password)) {
+      toast.error('invalid password');
+      return false;
+    }
+    if (!(userData.password === confirmPassword)) {
+      toast.error("passwords don't match");
+      return false;
+    }
+    if (!avatarRegex.test(avatar)) toast.error('invalid avatar formate');
+    return true;
+  };
+
+  const handleSubmit = () => {
+    try {
+      validateUserData();
+      axios
+        .post('/api/v1/auth/signup', userData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            navigate('/');
+          }
+        })
+        .catch(() => toast.error('Internal Server Error'));
+    } catch (err) {
+      toast.error(err);
+    }
+  };
+
   return (
     <div className="container">
       <form className="form">
         <label htmlFor="username">
           Username
-          <input id="username" type="text" placeholder="fadezak100" />
+          <input
+            id="username"
+            type="text"
+            placeholder="fadezak100"
+            value={userData.username}
+            onChange={(e) => {
+              setUserdata((prevState) => ({
+                ...prevState,
+                username: e.target.value,
+              }));
+            }}
+          />
         </label>
 
         <label htmlFor="password">
           Password
-          <input id="password" type="text" placeholder="********" />
+          <input
+            id="password"
+            type="password"
+            placeholder="********"
+            value={userData.password}
+            onChange={(e) => {
+              setUserdata((prevState) => ({
+                ...prevState,
+                password: e.target.value,
+              }));
+            }}
+          />
         </label>
 
-        <label htmlFor="username">
+        <label htmlFor="confirm-password">
           Confirm Password
-          <input id="username" type="text" placeholder="********" />
+          <input
+            id="confirm-password"
+            type="password"
+            placeholder="********"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </label>
 
         <label htmlFor="avatar">
@@ -25,12 +111,35 @@ export default function Singup() {
             id="avatar"
             type="text"
             placeholder="https://example.com/image.png"
+            value={userData.avatar}
+            onChange={(e) => {
+              setUserdata((prevState) => ({
+                ...prevState,
+                avatar: e.target.value,
+              }));
+            }}
           />
         </label>
       </form>
-      <a className="submit-btn" href="/">
+      <button
+        type="submit"
+        className="submit-btn"
+        onClick={handleSubmit}
+        href="/signup"
+      >
         Signup
-      </a>
+      </button>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

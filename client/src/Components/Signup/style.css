@@ -39,9 +39,9 @@
     background-color: var(--accent-color);
     border-radius: 1rem;
     color: white;
-    padding: 0.7rem 6rem;
+    padding: 1rem 6rem;
     margin-bottom: 3rem;
-
+    border: none;
 }
 
 .submit-btn:hover {
