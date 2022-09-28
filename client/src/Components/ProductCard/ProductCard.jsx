@@ -14,7 +14,7 @@ function ProductCard() {
       <div className="product-container">
         <h2>Hot products</h2>
         <div className="productCard-container">
-          {products.slice(0, 4).map((ele) => (
+          {products.map((ele) => (
             <Card product={ele} key={ele.id} />
           ))}
         </div>

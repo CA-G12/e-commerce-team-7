@@ -1,17 +1,33 @@
-//import React from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Header, LandingCard, ProductsPage, Cart, Signup, Login} from './Components';
+
+import fetchCartItem from './Components/Cart/fetch';
+import {
+  Header,
+  LandingCard,
+  ProductsPage,
+  Cart,
+  Signup,
+  Login,
+} from './Components';
 
 import './App.css';
 
 function App() {
-  // const [cart ,SetCart]= React.useState([]);
+  const [cart, setCart] = useState([
+    {
+      data: 'No data',
+    },
+  ]);
+  useEffect(() => {
+    fetchCartItem().then((data) => setCart(data));
+  }, []);
   return (
     <div className="App">
       <Router>
         <Header />
         <Routes>
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart cart={cart} />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route end path="/" element={<LandingCard />} />
           <Route path="/signup" element={<Signup />} />

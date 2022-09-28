@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export default function fetchingProduct() {
+export default function fetchCartItem() {
   return axios
-    .get('/api/v1/product/4/')
+    .get('/api/v1/cart')
     .then((res) => res.data)
     .catch((err) => err);
 }

@@ -15,14 +15,13 @@
 }
 .Header {
   width: 90%;
-  height: 15%; 
+  height: 15%;
   padding-top: 2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .Heading {
-
   margin-left: 2em;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
