@@ -5,6 +5,7 @@ const {
   filterCategory,
   filterPrice,
   getCountQuery,
+  getFilteredProductsQuery
 } = require('./products');
 const { addCart, getCart, deleteCart, updateQuantity } = require('./cart');
 
@@ -20,4 +21,5 @@ module.exports = {
   signUpQuery,
   getUsernameQuery,
   getCountQuery,
+  getFilteredProductsQuery
 };
