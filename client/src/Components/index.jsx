@@ -7,4 +7,13 @@ import Signup from './Signup/Singup';
 import Login from './Login/Login';
 import Cart from './Cart/Cart';
 
-export { Header, SingleProduct, LandingCard, ProductCard, ProductsPage, Cart, Signup, Login };
+export {
+  Header,
+  SingleProduct,
+  LandingCard,
+  ProductCard,
+  ProductsPage,
+  Cart,
+  Signup,
+  Login,
+};
