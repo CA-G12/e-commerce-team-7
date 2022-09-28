@@ -13,6 +13,6 @@ module.exports = {
   },
   plugins: ['prettier', 'jest'],
   rules: {
-    'prettier/prettier': ['error'],
+    // 'prettier/prettier': ['error'],
   },
 };
