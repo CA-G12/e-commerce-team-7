@@ -1,15 +1,15 @@
 import './style.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
-function Header({ isLogged, setLogged }) {
+function Header({ isLogged, setLogged, username }) {
+  const navigate = useNavigate();
   const handleLogout = () => {
-    document.cookie.split(';').forEach((c) => {
-      document.cookie = c
-        .replace(/^ +/, '')
-        .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+    axios.get('/api/v1/auth/logout').then(() => {
+      setLogged(false);
+      navigate('/');
     });
-    setLogged(false);
   };
   return (
     <header>
@@ -46,13 +46,16 @@ function Header({ isLogged, setLogged }) {
             </button>
           </div>
         ) : (
-          <div className="auth-buttons">
-            <button type="button" className="log-out-btn">
-              <Link to="/" onClick={handleLogout}>
-                Logout
-              </Link>
-            </button>
-          </div>
+          <>
+            <p>Hi {username}</p>
+            <div className="auth-buttons">
+              <button type="button" className="log-out-btn">
+                <Link to="/" onClick={handleLogout}>
+                  Logout
+                </Link>
+              </button>
+            </div>
+          </>
         )}
       </div>
     </header>
@@ -62,5 +65,6 @@ function Header({ isLogged, setLogged }) {
 Header.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   setLogged: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
 };
 export default Header;
