@@ -1,4 +1,4 @@
-const { signUp, login, logout } = require('./auth');
+const { signUp, login, logout, verify } = require('./auth');
 const {
   getProducts,
   getAllCategories,
@@ -28,4 +28,5 @@ module.exports = {
   logout,
   getCount,
   getAllProducts,
+  verify,
 };
