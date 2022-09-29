@@ -13,6 +13,7 @@ import {
   Cart,
   Signup,
   Login,
+  Error,
 } from './Components';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route end path="/" element={<LandingCard />} />
           <Route path="/signup" element={<Signup setLogged={setLogged} />} />
           <Route path="/login" element={<Login setLogged={setLogged} />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </Router>
       <ToastContainer

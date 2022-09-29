@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    margin: 4rem;
+    background-color: rgb(241, 241, 241);
+    border: 1px soild var(--category-name-text);
+    border-radius: 1rem;
+    flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.container h1 {
+    padding: 10rem;
+    padding-bottom: 2rem;
+    font-size: 3rem;
+}
+.container p {
+    padding-bottom: 10rem;
+    font-size: 1.3rem;
+}

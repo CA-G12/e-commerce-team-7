@@ -1,4 +1,5 @@
 import './style.css';
+import { Link } from 'react-router-dom';
 
 import product from './img/product.png';
 import ProductCard from '../ProductCard/ProductCard';
@@ -8,8 +9,7 @@ function LandingCard() {
     <>
       <div className="header-landeng">
         <div className="title-product">
-          <h4>Exclusive Smart Watch</h4>
-          <h1>Let go of the Challenge</h1>
+          <h1>eCommerce team seven </h1>
           <div className="paragraph">
             <p>
               Lorem ipsum dolor sit amet,consectetuer adipiscing elit,sed diam
@@ -27,12 +27,11 @@ function LandingCard() {
             </p>
           </div>
           <div className="buttons-div">
-            <button type="button" className="button-one">
-              Get Started <span>&#8594;</span>
-            </button>
-            {/* <button type="button" className="button-two">
-            How it Works <span>&#8594;</span>
-          </button> */}
+            <Link to="/products">
+              <button type="button" className="button-one">
+                Get Started <span>&#8594;</span>
+              </button>{' '}
+            </Link>
           </div>
         </div>
         <div>

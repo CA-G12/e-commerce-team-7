@@ -29,12 +29,14 @@ function Header({ isLogged, setLogged, username }) {
           >
             Products
           </NavLink>
-          <NavLink
-            to="/cart"
-            className={({ isActive }) => (isActive ? 'active' : 'in-active')}
-          >
-            Cart
-          </NavLink>
+          {isLogged && (
+            <NavLink
+              to="/cart"
+              className={({ isActive }) => (isActive ? 'active' : 'in-active')}
+            >
+              Cart
+            </NavLink>
+          )}
         </nav>
         {!isLogged ? (
           <div className="auth-buttons">
