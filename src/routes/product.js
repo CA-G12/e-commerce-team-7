@@ -17,7 +17,7 @@ router.get('/categories', getAllCategories);
 
 router.post('/filterCategory', filterByCategory);
 router.post('/filterPrice', filterByPrice);
-router.get('/id', getProductById)
+router.get('/id', getProductById);
 router.get('/:offset', getProducts);
 
 module.exports = router;

@@ -38,12 +38,16 @@ function Header({ isLogged, setLogged, username }) {
         </nav>
         {!isLogged ? (
           <div className="auth-buttons">
-            <button type="button" className="sign-in-btn">
-              <Link to="/login">Log In</Link>
-            </button>
-            <button type="button" className="sign-up-btn">
-              <Link to="/signup">Sign Up</Link>
-            </button>
+            <Link to="/login" className="aLink">
+              <button type="button" className="sign-in-btn">
+                Log In
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button type="button" className="sign-up-btn">
+                Sign Up
+              </button>
+            </Link>
           </div>
         ) : (
           <>
