@@ -13,8 +13,16 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(compression());
-app.use(express.static(join(__dirname, '..', 'client', 'build')));
+
 app.use('/api/v1/', router);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(join(__dirname, '..', 'client', 'build')));
+  app.get('*', (req, res) => {
+    res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+  });
+}
+
 app.use(handleError);
 
 module.exports = app;
