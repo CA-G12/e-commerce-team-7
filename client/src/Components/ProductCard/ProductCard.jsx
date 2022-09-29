@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Card from './Card';
 import fetchingProduct from './fetch';
 
-function ProductCard() {
+function ProductCard({ setCart }) {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetchingProduct().then((data) => setProducts(data.slice(0, 4)));
@@ -15,7 +15,7 @@ function ProductCard() {
         <h2>Hot products: </h2>
         <div className="productCard-container">
           {products.map((ele) => (
-            <Card product={ele} key={ele.id} />
+            <Card product={ele} key={ele.id} setCart={setCart} />
           ))}
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

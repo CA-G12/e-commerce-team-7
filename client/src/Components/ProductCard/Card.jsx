@@ -24,14 +24,14 @@ function Card({ product, setCart }) {
               navigate('/cart');
             })
             .catch((err) => {
-              toast.error(err.response.message);
+              toast.error(err);
             });
         } else {
           toast.info('Product is already added');
         }
       })
       .catch((err) => {
-        toast.error(err.response.data);
+        toast.error(err);
       });
   };
   return (
