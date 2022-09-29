@@ -56,7 +56,7 @@ export default function Signup({ setLogged, setUsername }) {
             navigate('/');
           }
         })
-        .catch((err) => toast.error(err.response.data));
+        .catch((err) => console.log(err));
     }
   };
 

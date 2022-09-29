@@ -50,7 +50,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header isLogged={isLogged} setLogged={setLogged} username={username} />
+        <Header
+          isLogged={isLogged}
+          setLogged={setLogged}
+          username={username}
+          setUsername={setUsername}
+        />
         <Routes>
           <Route
             path="/cart"
@@ -61,8 +66,14 @@ function App() {
             element={<ProductsPage setCart={setCart} />}
           />
           <Route end path="/" element={<LandingCard />} />
-          <Route path="/signup" element={<Signup setLogged={setLogged} />} />
-          <Route path="/login" element={<Login setLogged={setLogged} />} />
+          <Route
+            path="/signup"
+            element={<Signup setLogged={setLogged} setUsername={setUsername} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setLogged={setLogged} setUsername={setUsername} />}
+          />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="*" element={<Error />} />
         </Routes>

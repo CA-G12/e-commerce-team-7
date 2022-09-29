@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login({ setLogged, setUsername }) {
   const navigate = useNavigate();
-
   const [userData, setUserdata] = React.useState({
     username: '',
     password: '',
@@ -43,7 +42,7 @@ export default function Login({ setLogged, setUsername }) {
             navigate('/');
           }
         })
-        .catch((err) => toast.error(err.response.data));
+        .catch((err) => console.log(err));
     }
   };
   return (
