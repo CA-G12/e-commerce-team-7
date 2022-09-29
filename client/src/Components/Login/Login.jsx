@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function Login({ setLogged }) {
+export default function Login({ setLogged, setUsername }) {
   const navigate = useNavigate();
 
   const [userData, setUserdata] = React.useState({
@@ -40,10 +40,11 @@ export default function Login({ setLogged }) {
         .then((res) => {
           if (res.status === 200) {
             setLogged(true);
+            setUsername(res.data.username);
             navigate('/');
           }
         })
-        .catch(() => toast.error('Internal Server Error'));
+        .catch((err) => toast.error(err.response.data));
     }
   };
   return (
@@ -106,4 +107,5 @@ export default function Login({ setLogged }) {
 
 Login.propTypes = {
   setLogged: PropTypes.func.isRequired,
+  setUsername: PropTypes.func.isRequired,
 };

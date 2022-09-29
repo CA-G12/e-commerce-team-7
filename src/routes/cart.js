@@ -6,8 +6,8 @@ const {
   updateCartItem,
 } = require('../controllers');
 
-router.route('/').get(getCartItem).post(addCartItem).delete(deleteCartItem);
-
+router.route('/').get(getCartItem).post(addCartItem)
+router.delete('/id', deleteCartItem);
 router.post('/quantity', updateCartItem);
 
 module.exports = router;

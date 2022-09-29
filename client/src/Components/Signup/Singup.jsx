@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PropTypes from 'prop-types';
 
-export default function Signup({ setLogged }) {
+export default function Signup({ setLogged, setUsername }) {
   const navigate = useNavigate();
 
   const [userData, setUserdata] = React.useState({
@@ -35,7 +35,10 @@ export default function Signup({ setLogged }) {
       toast.error("passwords don't match");
       return false;
     }
-    if (!avatarRegex.test(avatar)) toast.error('invalid avatar formate');
+    if (!avatarRegex.test(avatar)) {
+      toast.error('invalid avatar formate');
+      return false;
+    }
     return true;
   };
 
@@ -50,10 +53,11 @@ export default function Signup({ setLogged }) {
         .then((res) => {
           if (res.status === 200) {
             setLogged(true);
+            setUsername(res.data.message[0].username);
             navigate('/');
           }
         })
-        .catch(() => toast.error('Internal Server Error'));
+        .catch((err) => toast.error(err.response.data));
     }
   };
 
@@ -144,4 +148,5 @@ export default function Signup({ setLogged }) {
 
 Signup.propTypes = {
   setLogged: PropTypes.func.isRequired,
+  setUsername: PropTypes.func.isRequired,
 };
