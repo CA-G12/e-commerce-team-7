@@ -16,19 +16,24 @@ import {
 } from './Components';
 
 function App() {
-  const [cart, setCart] = useState([]);
-
+  const [cart, setCart] = useState({ total: 0, items: [] });
   const [isLogged, setLogged] = useState(false);
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    axios
-      .get('/api/v1/cart')
-      .then((res) => {
-        setCart(res.data);
-      })
-      .catch((err) => err);
-  }, []);
+    if (isLogged) {
+      axios
+        .get('/api/v1/cart')
+        .then((res) => {
+          const totalPrice = res.data.reduce(
+            (acc, v) => acc + v.price * v.quantity,
+            0
+          );
+          setCart({ total: totalPrice, items: res.data });
+        })
+        .catch((err) => err);
+    }
+  }, [isLogged]);
 
   useEffect(() => {
     axios('/api/v1/auth/verify')
@@ -39,13 +44,17 @@ function App() {
         }
       })
       .catch(() => toast.info('You can login'));
-  }, []);
+  }, [cart]);
+
   return (
     <div className="App">
       <Router>
         <Header isLogged={isLogged} setLogged={setLogged} username={username} />
         <Routes>
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} setCart={setCart} />}
+          />
           <Route path="/products" element={<ProductsPage />} />
           <Route end path="/" element={<LandingCard />} />
           <Route

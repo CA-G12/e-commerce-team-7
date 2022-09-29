@@ -2,13 +2,10 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-export default function ProductCart({ info, setTotal }) {
-  const [productTotalPrice, setProductTotalPrice] = useState(0);
-  const [deleteFlag, setFlag] = useState(false);
-  const [numberOfProduct, setNumberOfProduct] = useState(1);
-
+export default function ProductCart({ info, setCart, index }) {
+  const [numberOfProduct, setNumberOfProduct] = useState(info.quantity);
   useEffect(() => {
-    if (deleteFlag) {
+    if (!numberOfProduct) {
       axios
         .delete(`/api/v1/cart/id?id=${info.id}`, {
           headers: {
@@ -16,15 +13,33 @@ export default function ProductCart({ info, setTotal }) {
           },
         })
         .then((res) => res.data)
+        .then(() => {
+          setCart((prevTotal) => ({
+            total:
+              prevTotal.total -
+              prevTotal.items[index].quantity * info.price +
+              numberOfProduct * info.price,
+            items: prevTotal.items.filter((el, i) => index !== i),
+          }));
+        })
         .catch((err) => err);
     }
-  }, [deleteFlag]);
+  }, [numberOfProduct]);
 
   useEffect(() => {
-    setNumberOfProduct(info.quantity);
-    setProductTotalPrice(info.quantity * info.price);
-    setTotal((prevTotal) => prevTotal + productTotalPrice);
-  }, [info.quantity]);
+    setCart((prevTotal) => ({
+      total:
+        prevTotal.total -
+        prevTotal.items[index].quantity * info.price +
+        numberOfProduct * info.price,
+      items: prevTotal.items.map((el, i) => {
+        if (index === i) {
+          return { ...el, quantity: numberOfProduct };
+        }
+        return el;
+      }),
+    }));
+  }, [numberOfProduct]);
 
   return (
     <div className="Cart-Items">
@@ -43,9 +58,9 @@ export default function ProductCart({ info, setTotal }) {
           type="button"
           className="btn"
           onClick={() => {
-            setNumberOfProduct((prev) => prev + 1);
-            setProductTotalPrice((prevPrice) => prevPrice + info.price);
-            setTotal((prevTotal) => prevTotal + info.price);
+            setNumberOfProduct(
+              (prevNumberOfProduct) => prevNumberOfProduct + 1
+            );
           }}
         >
           +
@@ -55,15 +70,9 @@ export default function ProductCart({ info, setTotal }) {
           type="button"
           className="btn"
           onClick={() => {
-            if (numberOfProduct > 1) {
-              setNumberOfProduct((prev) => prev - 1);
-              setProductTotalPrice((prevPrice) => prevPrice - info.price);
-              setTotal((prevTotal) => prevTotal - info.price);
-            } else {
-              setFlag(true);
-              setNumberOfProduct(0);
-              setTotal(0);
-            }
+            setNumberOfProduct(
+              (prevNumberOfProduct) => prevNumberOfProduct - 1
+            );
           }}
         >
           -
@@ -74,5 +83,6 @@ export default function ProductCart({ info, setTotal }) {
 }
 ProductCart.propTypes = {
   info: PropTypes.objectOf.isRequired,
-  setTotal: PropTypes.func.isRequired,
+  setCart: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };
