@@ -101,7 +101,7 @@ export default function Signup({ setLogged, setUsername }) {
             id="confirm-password"
             type="password"
             placeholder="********"
-            value={confirmPassword}
+            value={confirmPassword.confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
