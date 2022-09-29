@@ -37,11 +37,10 @@ describe('  add item into Cart', () => {
 describe('remove item from cart', () => {
   test('delete router ', (done) => {
     request(app)
-      .delete('/api/v1/cart/')
+      .delete('/api/v1/cart/id?id=3')
       .set('Cookie', [
         'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJzYWlmIiwiaWF0IjoxNjY0MjE4NzQ2fQ.cjfUbvrfQoJ4r0mifiLbana-m8OQn8tV04MPjPuCF30',
       ])
-      .send({ productId: 3 })
       .expect(200)
       .end((err, res) => {
         if (err) done(err);

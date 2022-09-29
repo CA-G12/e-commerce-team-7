@@ -13,7 +13,7 @@ body {
 }
 .header-landeng h4 {
   padding-top: 20px;
-  color: var(--button-background-color);
+  color: var(--category-name-text);
 }
 .title-product h1 {
   font-size: 40px;

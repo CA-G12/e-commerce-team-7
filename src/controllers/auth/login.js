@@ -8,12 +8,12 @@ const login = (req, res, next) => {
   loginValidation(req.body)
     .then(() => getUserQuery(req.body.username))
     .then((data) => {
-      if (!data.rowCount) throw new CustomizedError(400, 'Username not found');
+      if (!data.rowCount) throw new CustomizedError(400, 'Wrong credentials');
       req.userData = data;
       return compare(req.body.password, data.rows[0].password);
     })
     .then((verified) => {
-      if (!verified) throw new CustomizedError(400, 'wrong password');
+      if (!verified) throw new CustomizedError(400, 'Wrong credentials');
       return generateToken({
         id: req.userData.rows[0].id,
         username: req.userData.rows[0].username,

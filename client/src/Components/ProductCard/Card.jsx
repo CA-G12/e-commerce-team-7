@@ -1,13 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
-import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 function Card({ product }) {
   const navigate = useNavigate();
-  const { id, name, price, image, description, category } = product;
+  const { id, name, price, image, category } = product;
 
   const handleAddToCart = (productId) => {
     axios
@@ -36,7 +36,6 @@ function Card({ product }) {
       <div className="info">
         <p className="productCard-category"> {category} </p>
         <p className="description">{name}</p>
-        <p className="description">{description}</p>
         <div className="buy-info">
           <span> ${price}</span>
           <button
@@ -45,8 +44,10 @@ function Card({ product }) {
               handleAddToCart(id);
             }}
           >
-            {' '}
             Add{' '}
+          </button>
+          <button onClick={() => navigate(`/product/${id}`)} type="button">
+            View
           </button>
         </div>
       </div>

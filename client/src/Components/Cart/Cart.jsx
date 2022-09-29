@@ -1,32 +1,23 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCart from './ProductCart';
-
 import './style.css';
 
-export default function Cart({ cart }) {
-  const [total, setTotal] = React.useState(0);
-
+export default function Cart({ cart, setCart }) {
   return (
     <div className="Cart-Container">
       <div className="Header">
         <h3 className="Heading">Shopping Cart</h3>
-        <button type="button"> Total price $ {total} </button>
+        <button type="button"> Total price ${cart.total}</button>
       </div>
-
-      {!('data' in cart[0])
-        ? cart.map((ele) => (
-            <ProductCart
-              key={ele.id}
-              total={total}
-              setTotal={setTotal}
-              info={ele}
-            />
+      {cart.items.length
+        ? cart.items.map((ele, i) => (
+            <ProductCart key={ele.id} info={ele} setCart={setCart} index={i} />
           ))
-        : null}
+        : 'You have nothing in'}
     </div>
   );
 }
 Cart.propTypes = {
-  cart: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
+  cart: PropTypes.objectOf.isRequired,
+  setCart: PropTypes.func.isRequired,
 };

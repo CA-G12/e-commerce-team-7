@@ -1,27 +1,45 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-export default function ProductCart({ setTotal, total, info }) {
-  const [nmbProduct, setNmbProduct] = React.useState(1);
-  const [deleteFlag, setFlag] = React.useState(false);
+export default function ProductCart({ info, setCart, index }) {
+  const [numberOfProduct, setNumberOfProduct] = useState(info.quantity);
   useEffect(() => {
-    if (deleteFlag) {
+    if (!numberOfProduct) {
       axios
-        .delete('/api/v1/cart', info.id, {
+        .delete(`/api/v1/cart/id?id=${info.id}`, {
           headers: {
             'Content-Type': 'application/json',
           },
         })
         .then((res) => res.data)
+        .then(() => {
+          setCart((prevCart) => ({
+            total:
+              prevCart.total -
+              prevCart.items[index].quantity * info.price +
+              numberOfProduct * info.price,
+            items: prevCart.items.filter((el, i) => index !== i),
+          }));
+        })
         .catch((err) => err);
     }
-  }, []);
+  }, [numberOfProduct]);
 
   useEffect(() => {
-    setTotal((price) => price + info.price * info.quantity);
-    setNmbProduct(info.quantity);
-  }, [info.quantity]);
+    setCart((prevCart) => ({
+      total:
+        prevCart.total -
+        prevCart.items[index].quantity * info.price +
+        numberOfProduct * info.price,
+      items: prevCart.items.map((el, i) => {
+        if (index === i) {
+          return { ...el, quantity: numberOfProduct };
+        }
+        return el;
+      }),
+    }));
+  }, [numberOfProduct]);
 
   return (
     <div className="Cart-Items">
@@ -37,25 +55,21 @@ export default function ProductCart({ setTotal, total, info }) {
           type="button"
           className="btn"
           onClick={() => {
-            setNmbProduct((prev) => prev + 1);
-            const price = total + info.price;
-            setTotal(price);
+            setNumberOfProduct(
+              (prevNumberOfProduct) => prevNumberOfProduct + 1
+            );
           }}
         >
           +
         </button>
-        <div className="count">{nmbProduct}</div>
+        <div className="count">{numberOfProduct}</div>
         <button
           type="button"
           className="btn"
           onClick={() => {
-            if (nmbProduct > 1) {
-              setNmbProduct(nmbProduct - 1);
-              const price = total - info.price;
-              setTotal(price);
-            } else {
-              setFlag(true);
-            }
+            setNumberOfProduct(
+              (prevNumberOfProduct) => prevNumberOfProduct - 1
+            );
           }}
         >
           -
@@ -66,6 +80,6 @@ export default function ProductCart({ setTotal, total, info }) {
 }
 ProductCart.propTypes = {
   info: PropTypes.objectOf.isRequired,
-  setTotal: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired,
+  setCart: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };
