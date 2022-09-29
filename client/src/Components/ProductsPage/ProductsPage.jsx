@@ -82,9 +82,9 @@ function ProductsPage() {
         ))}
       </div>
       <div className="product-container">
-        {products.map((ele) => (
-          <Card product={ele} key={ele.id} />
-        ))}
+        {products.length > 0
+          ? products.map((ele) => <Card product={ele} key={ele.id} />)
+          : 'No Products'}
       </div>
       <div className="filters">
         <h3 className="price-title">Price: </h3>

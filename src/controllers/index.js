@@ -6,12 +6,14 @@ const {
   filterByPrice,
   getCount,
   getAllProducts,
+  getProductById,
 } = require('./product');
 const {
   deleteCartItem,
   getCartItem,
   addCartItem,
   updateCartItem,
+  getCartByProductId,
 } = require('./cart');
 
 module.exports = {
@@ -29,4 +31,6 @@ module.exports = {
   getCount,
   getAllProducts,
   verify,
+  getCartByProductId,
+  getProductById,
 };

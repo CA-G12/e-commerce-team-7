@@ -4,7 +4,6 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-import fetchCartItem from './Components/Cart/fetch';
 
 import {
   Header,
@@ -14,20 +13,28 @@ import {
   Signup,
   Login,
   Error,
+  SingleProduct,
 } from './Components';
 
 function App() {
-  const [cart, setCart] = useState([
-    {
-      data: 'Nodata',
-    },
-  ]);
+  const [cart, setCart] = useState({ total: 0, items: [] });
   const [isLogged, setLogged] = useState(false);
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    fetchCartItem().then((data) => setCart(data));
-  }, []);
+    if (isLogged) {
+      axios
+        .get('/api/v1/cart')
+        .then((res) => {
+          const totalPrice = res.data.reduce(
+            (acc, v) => acc + v.price * v.quantity,
+            0
+          );
+          setCart({ total: totalPrice, items: res.data });
+        })
+        .catch((err) => err);
+    }
+  }, [isLogged]);
 
   useEffect(() => {
     axios('/api/v1/auth/verify')
@@ -38,17 +45,22 @@ function App() {
         }
       })
       .catch(() => toast.info('You can login'));
-  }, []);
+  }, [cart]);
+
   return (
     <div className="App">
       <Router>
         <Header isLogged={isLogged} setLogged={setLogged} username={username} />
         <Routes>
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} setCart={setCart} />}
+          />
           <Route path="/products" element={<ProductsPage />} />
           <Route end path="/" element={<LandingCard />} />
           <Route path="/signup" element={<Signup setLogged={setLogged} />} />
           <Route path="/login" element={<Login setLogged={setLogged} />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

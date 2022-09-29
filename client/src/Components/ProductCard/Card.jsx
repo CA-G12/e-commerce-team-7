@@ -1,20 +1,67 @@
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function Card({ product }) {
-  const { name, price, image, description, category } = product;
+  const navigate = useNavigate();
+  const { id, name, price, image, category } = product;
+
+  const handleAddToCart = (productId) => {
+    axios
+      .get(`/api/v1/cart/byProductId/${productId}`)
+      .then(({ data }) => {
+        if (data.length === 0) {
+          axios
+            .post('/api/v1/cart', { productId, quantity: 1 })
+            .then(() => {
+              navigate('/cart');
+            })
+            .catch((err) => {
+              toast.error(err.response.message);
+            });
+        } else {
+          toast.info('Product is already added');
+        }
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+      });
+  };
   return (
     <div className="productCard-card">
       <img src={image} alt="product" />
       <div className="info">
         <p className="productCard-category"> {category} </p>
         <p className="description">{name}</p>
-        <p className="description">{description}</p>
         <div className="buy-info">
           <span> ${price}</span>
-          <button type="button"> Add </button>
+          <button
+            type="button"
+            onClick={() => {
+              handleAddToCart(id);
+            }}
+          >
+            Add{' '}
+          </button>
+          <button onClick={() => navigate(`/product/${id}`)} type="button">
+            View
+          </button>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

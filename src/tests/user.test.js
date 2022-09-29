@@ -94,7 +94,7 @@ describe('login router', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body).toBe('Username not found');
+        expect(res.body).toBe('Wrong credentials');
         return done();
       });
   });
@@ -109,7 +109,7 @@ describe('login router', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body).toBe('wrong password');
+        expect(res.body).toBe('Wrong credentials');
         return done();
       });
   });

@@ -3,6 +3,7 @@
   flex-direction: column-reverse;
   gap: 2rem;
 }
+
 .product-page .product-container .productCard-card {
   margin: 2rem 0;
 }
