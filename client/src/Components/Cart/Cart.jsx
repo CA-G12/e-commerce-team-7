@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import { useEffect } from 'react';
 import ProductCart from './ProductCart';
 import './style.css';
 
@@ -17,7 +17,3 @@ export default function Cart({ cart, setCart }) {
     </div>
   );
 }
-Cart.propTypes = {
-  cart: PropTypes.objectOf.isRequired,
-  setCart: PropTypes.func.isRequired,
-};

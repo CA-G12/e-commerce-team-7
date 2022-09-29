@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
 export default function ProductCart({ info, setCart, index }) {
@@ -78,8 +77,3 @@ export default function ProductCart({ info, setCart, index }) {
     </div>
   );
 }
-ProductCart.propTypes = {
-  info: PropTypes.objectOf.isRequired,
-  setCart: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
-};

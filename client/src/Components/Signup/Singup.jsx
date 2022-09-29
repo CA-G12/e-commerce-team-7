@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PropTypes from 'prop-types';
 
 export default function Signup({ setLogged, setUsername }) {
   const navigate = useNavigate();
@@ -145,8 +144,3 @@ export default function Signup({ setLogged, setUsername }) {
     </div>
   );
 }
-
-Signup.propTypes = {
-  setLogged: PropTypes.func.isRequired,
-  setUsername: PropTypes.func.isRequired,
-};

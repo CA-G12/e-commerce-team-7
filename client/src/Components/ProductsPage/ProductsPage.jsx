@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Card from '../ProductCard/Card';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ProductsPage() {
+function ProductsPage({ setCart }) {
   const numberOfShownCounts = 10;
   const [products, setProducts] = useState([]);
   const [price, setPrice] = useState({
@@ -83,7 +83,9 @@ function ProductsPage() {
       </div>
       <div className="product-container">
         {products.length > 0
-          ? products.map((ele) => <Card product={ele} key={ele.id} />)
+          ? products.map((ele) => (
+              <Card product={ele} key={ele.id} setCart={setCart} />
+            ))
           : 'No Products'}
       </div>
       <div className="filters">

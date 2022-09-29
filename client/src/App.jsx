@@ -55,7 +55,10 @@ function App() {
             path="/cart"
             element={<Cart cart={cart} setCart={setCart} />}
           />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route
+            path="/products"
+            element={<ProductsPage setCart={setCart} />}
+          />
           <Route end path="/" element={<LandingCard />} />
           <Route
             path="/signup"

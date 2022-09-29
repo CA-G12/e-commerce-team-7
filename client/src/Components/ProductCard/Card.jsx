@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import './style.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-function Card({ product }) {
+function Card({ product, setCart }) {
   const navigate = useNavigate();
   const { id, name, price, image, category } = product;
 
@@ -16,7 +15,12 @@ function Card({ product }) {
         if (data.length === 0) {
           axios
             .post('/api/v1/cart', { productId, quantity: 1 })
+            .then((res) => res.data)
             .then(() => {
+              setCart((prev) => ({
+                total: prev.total + price,
+                items: [...prev.items, { id, name, price, image, quantity: 1 }],
+              }));
               navigate('/cart');
             })
             .catch((err) => {
@@ -65,18 +69,5 @@ function Card({ product }) {
     </div>
   );
 }
-
-Card.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.number,
-    category: PropTypes.string,
-    name: PropTypes.string,
-    stock: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-    description: PropTypes.string,
-    galary: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
-};
 
 export default Card;
