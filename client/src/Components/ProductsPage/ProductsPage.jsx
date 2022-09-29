@@ -89,8 +89,8 @@ function ProductsPage({ setCart }) {
           : 'No Products'}
       </div>
       <div className="filters">
+        <h3 className="price-title">Price: </h3>
         <div className="price">
-          <h3 className="price-title">Price</h3>
           <label htmlFor="min-price">
             Min Price
             <input
@@ -122,13 +122,14 @@ function ProductsPage({ setCart }) {
             />
           </label>
         </div>
+        <h3 className="categories-title">Categories: </h3>
         <div className="categories">
-          <h3 className="categories-title">Categories</h3>
           {categories.map((ele) => (
             <label htmlFor={ele.category} key={ele.category}>
               {ele.category}
               <input
                 type="radio"
+                className="radio-btn"
                 id={ele.category}
                 value={ele.category}
                 name="categories"
