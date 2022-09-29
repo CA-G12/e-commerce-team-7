@@ -5,7 +5,10 @@
   padding-left: 2em;
   padding-right: 2em;
 }
-.product-container h2 {
+.product-container {
+  display: flex;
+}
+h2 {
   padding: 2em;
   color: var(--accent-color);
 }

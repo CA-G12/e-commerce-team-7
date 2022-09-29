@@ -12,6 +12,7 @@ import {
   Cart,
   Signup,
   Login,
+  Error,
   SingleProduct,
 } from './Components';
 
@@ -57,16 +58,10 @@ function App() {
           />
           <Route path="/products" element={<ProductsPage />} />
           <Route end path="/" element={<LandingCard />} />
-          <Route
-            path="/signup"
-            element={<Signup setLogged={setLogged} setUsername={setUsername} />}
-          />
-          <Route
-            path="/login"
-            element={<Login setLogged={setLogged} setUsername={setUsername} />}
-          />
+          <Route path="/signup" element={<Signup setLogged={setLogged} />} />
+          <Route path="/login" element={<Login setLogged={setLogged} />} />
           <Route path="/product/:id" element={<SingleProduct />} />
-          <Route path="*" element={<h1>Error</h1>} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </Router>
       <ToastContainer

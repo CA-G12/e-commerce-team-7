@@ -6,13 +6,13 @@ import fetchingProduct from './fetch';
 function ProductCard() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetchingProduct().then((data) => setProducts(data));
+    fetchingProduct().then((data) => setProducts(data.slice(0, 4)));
   }, []);
 
   if (products.length) {
     return (
       <div className="product-container">
-        <h2>Hot products</h2>
+        <h2>Hot products: </h2>
         <div className="productCard-container">
           {products.map((ele) => (
             <Card product={ele} key={ele.id} />
