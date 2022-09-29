@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import product from './img/product.png';
 import ProductCard from '../ProductCard/ProductCard';
 
-function LandingCard() {
+function LandingCard({ setCart }) {
   return (
     <>
       <div className="header-landeng">
@@ -38,7 +38,7 @@ function LandingCard() {
           <img src={product} className="img-product" alt="product" />
         </div>
       </div>
-      <ProductCard />
+      <ProductCard setCart={setCart} />
     </>
   );
 }

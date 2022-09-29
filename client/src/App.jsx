@@ -65,7 +65,7 @@ function App() {
             path="/products"
             element={<ProductsPage setCart={setCart} />}
           />
-          <Route end path="/" element={<LandingCard />} />
+          <Route end path="/" element={<LandingCard setCart={setCart} />} />
           <Route
             path="/signup"
             element={<Signup setLogged={setLogged} setUsername={setUsername} />}
