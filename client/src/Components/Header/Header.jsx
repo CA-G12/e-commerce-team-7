@@ -1,6 +1,5 @@
 import './style.css';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
 function Header({ isLogged, setLogged, username }) {
@@ -45,7 +44,7 @@ function Header({ isLogged, setLogged, username }) {
                 Log In
               </button>
             </Link>
-            <Link to="/signup">
+            <Link to="/signup" className="aLink">
               <button type="button" className="sign-up-btn">
                 Sign Up
               </button>
@@ -55,11 +54,11 @@ function Header({ isLogged, setLogged, username }) {
           <>
             <p>Hi {username}</p>
             <div className="auth-buttons">
-              <button type="button" className="log-out-btn">
-                <Link to="/" onClick={handleLogout}>
+              <Link to="/" onClick={handleLogout} className="aLink">
+                <button type="button" className="log-out-btn">
                   Logout
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           </>
         )}
@@ -68,9 +67,4 @@ function Header({ isLogged, setLogged, username }) {
   );
 }
 
-Header.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
-  setLogged: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-};
 export default Header;

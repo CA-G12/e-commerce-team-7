@@ -1,14 +1,12 @@
 import './style.css';
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login({ setLogged, setUsername }) {
   const navigate = useNavigate();
-
   const [userData, setUserdata] = React.useState({
     username: '',
     password: '',
@@ -44,7 +42,7 @@ export default function Login({ setLogged, setUsername }) {
             navigate('/');
           }
         })
-        .catch((err) => toast.error(err.response.data));
+        .catch((err) => console.log(err));
     }
   };
   return (
@@ -82,14 +80,11 @@ export default function Login({ setLogged, setUsername }) {
           />
         </label>
       </form>
-      <button
-        type="submit"
-        className="submit-btn"
-        onClick={handleSubmit}
-        href="/Login"
-      >
-        Login
-      </button>
+      <Link to="/Login">
+        <button type="submit" className="submit-btn" onClick={handleSubmit}>
+          Login
+        </button>
+      </Link>
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -104,8 +99,3 @@ export default function Login({ setLogged, setUsername }) {
     </div>
   );
 }
-
-Login.propTypes = {
-  setLogged: PropTypes.func.isRequired,
-  setUsername: PropTypes.func.isRequired,
-};
