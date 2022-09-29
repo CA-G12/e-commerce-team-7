@@ -84,3 +84,7 @@ a {
     margin: 0;
   }
 }
+.aLink{
+  display: block;
+  cursor: pointer;
+}

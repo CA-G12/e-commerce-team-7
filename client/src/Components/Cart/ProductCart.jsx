@@ -26,10 +26,7 @@ export default function ProductCart({ setTotal, total, info }) {
   return (
     <div className="Cart-Items">
       <div className="image-box">
-        <img
-          src="https://dummyjson.com/image/i/products/2/3.jpg"
-          alt="product "
-        />
+        <img src={info.image} alt="product " />
       </div>
       <div className="about">
         <h1 className="title">{info.name}</h1>

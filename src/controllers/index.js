@@ -12,6 +12,7 @@ const {
   getCartItem,
   addCartItem,
   updateCartItem,
+  getCartByProductId,
 } = require('./cart');
 
 module.exports = {
@@ -29,4 +30,5 @@ module.exports = {
   getCount,
   getAllProducts,
   verify,
+  getCartByProductId,
 };
