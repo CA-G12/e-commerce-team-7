@@ -14,12 +14,12 @@ export default function ProductCart({ info, setCart, index }) {
         })
         .then((res) => res.data)
         .then(() => {
-          setCart((prevTotal) => ({
+          setCart((prevCart) => ({
             total:
-              prevTotal.total -
-              prevTotal.items[index].quantity * info.price +
+              prevCart.total -
+              prevCart.items[index].quantity * info.price +
               numberOfProduct * info.price,
-            items: prevTotal.items.filter((el, i) => index !== i),
+            items: prevCart.items.filter((el, i) => index !== i),
           }));
         })
         .catch((err) => err);
@@ -27,12 +27,12 @@ export default function ProductCart({ info, setCart, index }) {
   }, [numberOfProduct]);
 
   useEffect(() => {
-    setCart((prevTotal) => ({
+    setCart((prevCart) => ({
       total:
-        prevTotal.total -
-        prevTotal.items[index].quantity * info.price +
+        prevCart.total -
+        prevCart.items[index].quantity * info.price +
         numberOfProduct * info.price,
-      items: prevTotal.items.map((el, i) => {
+      items: prevCart.items.map((el, i) => {
         if (index === i) {
           return { ...el, quantity: numberOfProduct };
         }
